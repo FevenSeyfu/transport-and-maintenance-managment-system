@@ -7,6 +7,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+
 class RedirectIfAuthenticated
 {
     /**
@@ -22,6 +23,7 @@ class RedirectIfAuthenticated
       
           if (Auth::guard($guard)->check()) {
               if (Auth::user()->role == 'driver') {
+                
                   return redirect('driver');
               } 
               elseif (Auth::user()->role == 'client') {

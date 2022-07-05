@@ -2,46 +2,92 @@
 
 @section('content')
 
-<div >
-    
-        <div class="container">
-            <div class="text-center">
-                <h1 class="text-5xl Uppercase bold">
-                   Update Driver Information
-                </h1>
-            </div>
-            <div class="flex justify-center py-20">
-                <form action="/driverList/{{ $driver->id }}" method="POST">
-                   @csrf 
-                   @method('PUT')
-                    <div class="block">
-                        <input type="text" 
-                           name="first_name" 
-                           value="{{ $driver->first_name }}"
-                           class=" w-80 italic placeholder-gray-400"><br>
-                    <input type="text" 
+<div class="container">
+    <div class="row justify-content-end" > 
+        <button  class="btn btn-outline-primary btn-sm" id="top" onclick="location.href='{{url('Leader')}}'">Dashboard</button>
+    </div>
+    <div class="text-center">
+            <h1 class="text-5xl Uppercase bold">
+                Update Driver Information
+            </h1>
+        </div>
+        <div class="flex justify-center py-20">
+            <form action="/driverList/{{ $driver->id }}" method="POST">
+                @csrf 
+                @method('PUT')
+                <div class="form-group row">
+                    <label for="first_name"
+                            class="col-md-4 col-form-label text-md-right">
+                            {{ __('First Name') }}
+                    </label>
+                    <div class="col-md-6">
+                            <input id="first_name" 
+                            type="text" 
+                            class="form-control
+                            @error('first_name') is-invalid 
+                            @enderror" 
+                            name="first_name" 
+                            value="{{ $driver->first_name }}"
+                            required autocomplete="location" autofocus>
+                            @error('first_name')
+                            <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                    </div>  
+                </div> 
+                <div class="form-group row">
+                    <label for="last_name"
+                            class="col-md-4 col-form-label text-md-right">
+                            {{ __('Last Name') }}
+                    </label>
+                    <div class="col-md-6">
+                            <input id="last_name" 
+                            type="text" 
+                            class="form-control
+                            @error('last_name') is-invalid 
+                            @enderror" 
                             name="last_name" 
-                            value="{{ $driver->last_name }}" 
-                            class=" w-80 italicplaceholder-gray-400"><br>
-                    <div>
-                        <label>Driver's Status</label> <br>       
+                            value="{{ $driver->last_name }}"
+                            required autocomplete="location" autofocus>
+                            @error('last_name')
+                            <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                    </div>
+                </div>     
+                <div class="form-group row">
+                    <label for="driver_status"
+                            class="col-md-4 col-form-label text-md-right">
+                            {{ __('Driver Status') }}
+                    </label>
+                    <div class="col-md-2 my-3">
                         <input type="radio" 
                                 name="driver_status" 
                                 value="Assigned"
-                                class="">Assigned<br>
+                                class="col-md-2 @error('driver_status') is-invalid @enderror">Assigned<br>
                         <input type="radio" 
                                 name="driver_status" 
                                 value="available"
-                                class="">Available
+                                class="col-md-2 @error('driver_status') is-invalid @enderror" checked>Available <br>
+                        
+                        @error('driver_status')
+                                <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                </span>
+                        @enderror
                     </div>  
-                    <button type="submit" class="bg-green-500 block shadow-5xl mb-10 p-2 w-80 uppercase font-bold">
-                        submit
-                    </button>
+                </div>   
+                <div class="form-group row mb-0">
+                    <div class="col-md-4 offset-md-4">
+                        <button type="submit" class="btn btn-primary">
+                            {{ __('Submit') }}
+                        </button>
                     </div>
-                </form>
-            </div>
+                </div>
+            </form>
         </div>
-        
-    
-</div>
+    </div>
+ </div>
 @endsection

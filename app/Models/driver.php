@@ -15,7 +15,11 @@ class driver extends Model
     protected $fillable =[
         'first_name',
         'last_name',
-        'driver_status']; 
+        'username',
+        'driver_status',
+        'car_id',
+        'transport_id'
+    ]; 
     public function driverFullName(){
         return $this->first_name.' '.$this->last_name;
     }
@@ -23,4 +27,9 @@ class driver extends Model
     {
         return $this->belongsTo(Transport::class);
     }
+    public function MaintenanceRequest()
+    {
+        return $this->belongsTo(Transport::class);
+    }
+    
 }

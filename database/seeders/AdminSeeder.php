@@ -66,6 +66,24 @@ class AdminSeeder extends Seeder
             'password' => Hash::make('password'),
             'isApproved'=> 1,
         ]);
-
+        User::create([
+            'firstname' => 'Alemayehu',
+            'lastname'  => 'Wedaj',
+            'username'  => 'Alemayehu',
+            'phone'     => '0914000000',
+            'email'     => 'Alemayehu@mail.com',
+            'role'      => 'driver',
+            'password' => Hash::make('password'),
+            'isApproved'=> 1,
+        ]);User::create([
+            'firstname' => 'Tariku',
+            'lastname'  => 'T/tsadik',
+            'username'  => 'Tariku',
+            'phone'     => '0915000000',
+            'email'     => 'tariku@mail.com',
+            'role'      => 'driver',
+            'password' => Hash::make('password'),
+            'isApproved'=> 1,
+        ]);
     }
 }

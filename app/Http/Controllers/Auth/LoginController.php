@@ -26,7 +26,9 @@ class LoginController extends Controller
      * Where to redirect users after login.
      *
      * @var string
+     * 
      */
+   
     protected function redirectTo() {
       $roles = Auth()->user()->role; 
         if ($roles=='driver') {
@@ -50,7 +52,7 @@ class LoginController extends Controller
     {
       return 'username';
     } 
-
+    
     /**
      * Create a new controller instance.
      *

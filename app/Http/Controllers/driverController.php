@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\driver;
+use App\Models\User;
+
 class driverController extends Controller
 {
     /**
@@ -14,7 +16,7 @@ class driverController extends Controller
     public function index()
     {
       
-       $drivers=driver::all();
+       $drivers=driver::orderBY('created_at','DESC')->get();
         return view('driverList.index',[
             'drivers'=>$drivers,
             
@@ -41,14 +43,12 @@ class driverController extends Controller
     {
         
         $driver = driver::create([
-            'id'=> $request->input('id'),
             'first_name'=> $request->input('first_name'),
             'last_name'=> $request->input('last_name'),
-            'created_at'=> $request->input('created_at'),
             'driver_status'=> $request->input('driver_status')
         ]);
-        return redirect('/driverList')->withMessage('New driver info added to the list');
-        
+       return redirect('/driverList')->with('success','New driver info added to the list');
+       
     }
 
     /**
@@ -83,13 +83,25 @@ class driverController extends Controller
      */
     public function update(Request $request, $id)
     {
+        
+       
         $driver = driver::where('id',$id)
         ->update([
             'first_name'=> $request->input('first_name'),
             'last_name'=> $request->input('last_name'),
-            'created_at'=> $request->input('created_at'),
+            'driver_status'=> $request->input('driver_status'),
         ]);
-        return redirect('/driverList')->withMessage('Driver info has been updated');
+        $drivers=driver::find($id);
+        $users=User::where('role','=','driver')->get();
+        foreach ($users as $user) {
+            if ($user->fullName() ==$drivers->driverFullName()) {
+                $drivers->update([
+                    'username'=> $user->username,
+                    ]);
+                
+            }
+        }
+        return redirect('/driverList')->with('success','Driver info has been updated');
     }
 
     /**

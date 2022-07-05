@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>ECAA-Transport and maintenance</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -74,6 +74,10 @@
         </nav>
 
         <main class="py-4">
+            
+                @include('message')
+            
+
             @yield('content')
         </main>
     </div>

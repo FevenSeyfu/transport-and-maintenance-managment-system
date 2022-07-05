@@ -15,24 +15,75 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->truncate(); //for cleaning earlier data to avoid duplicate entries
         DB::table('users')->insert([
-            'name' => 'the client user',
-            'email' => 'client@gmail.com',
-            'role' => 'client',
+            'firstname' => 'admin',
+            'lastname'  => 'admin',
+            'username'  => 'admin',
+            'phone'     => '0900000000',
+            'email'     => 'admin@admin.com',
+            'role'      => 'admin',
             'password' => Hash::make('password'),
+            'isApproved'=> 1,
         ]);
         DB::table('users')->insert([
-            'name' => 'the driver user',
-            'email' => 'driver@gmail.com',
-            'role' => 'driver',
+            'firstname' => 'client',
+            'lastname'  => 'client',
+            'username'  => 'client',
+            'phone'     => '0910000000',
+            'email'     => 'client@mail.com',
+            'role'      => 'client',
             'password' => Hash::make('password'),
+            'isApproved'=> 1,
         ]);
         DB::table('users')->insert([
-            'name' => 'the Leader user',
-            'email' => 'Leader@gmail.com',
-            'role' => 'Leader',
+            'firstname' => 'Leader',
+            'lastname'  => 'Leader',
+            'username'  => 'Leader',
+            'phone'     => '0911000000',
+            'email'     => 'Leader@mail.com',
+            'role'      => 'Leader',
             'password' => Hash::make('password'),
+            'isApproved'=> 1,
+        ]);
+        DB::table('users')->insert([
+            'firstname' => 'Driver',
+            'lastname'  => 'Driver',
+            'username'  => 'Driver',
+            'phone'     => '0912000000',
+            'email'     => 'Driver@mail.com',
+            'role'      => 'driver',
+            'password' => Hash::make('password'),
+            'isApproved'=> 1,
+        ]);
+        DB::table('users')->insert([
+            'firstname' => 'maintenancehead',
+            'lastname'  => 'maintenanceHead',
+            'username'  => 'maintenancehead',
+            'phone'     => '0913000000',
+            'email'     => 'maintenanceHead@mail.com',
+            'role'      => 'maintenanceHead',
+            'password' => Hash::make('password'),
+            'isApproved'=> 1,
+        ]);
+        DB::table('users')->insert([
+            'firstname' => 'Alemayehu',
+            'lastname'  => 'Wedaj',
+            'username'  => 'Alemayehu',
+            'phone'     => '0914000000',
+            'email'     => 'Alemayehu@mail.com',
+            'role'      => 'driver',
+            'password' => Hash::make('password'),
+            'isApproved'=> 1,
+        ]);
+        DB::table('users')->insert([
+            'firstname' => 'Tariku',
+            'lastname'  => 'T/tsadik',
+            'username'  => 'Tariku',
+            'phone'     => '0915000000',
+            'email'     => 'tariku@mail.com',
+            'role'      => 'driver',
+            'password' => Hash::make('password'),
+            'isApproved'=> 1,
         ]);
         
     }

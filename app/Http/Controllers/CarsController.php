@@ -13,7 +13,7 @@ class CarsController extends Controller
      */
     public function index()
     {    
-        $cars= Cars::all();
+        $cars= Cars::orderBY('created_at','DESC')->get();
         return view('cars.index',[
             'cars'=> $cars
         ]);
@@ -40,7 +40,7 @@ class CarsController extends Controller
         $car = Cars::create([
             'model'=> $request->input('model'),
             'license_plate_number'=> $request->input('license_plate_number'),
-            'milo_meter'=> $request->input('milo_meter'),
+            'kilo_meter'=> $request->input('kilo_meter'),
             'passenger_capacity'=> $request->input('passenger_capacity'),
             'car_status'=> $request->input('car_status'),
             'service_type'=> $request->input('service_type'),
@@ -86,7 +86,7 @@ class CarsController extends Controller
         ->update([
             'model'=> $request->input('model'),
             'license_plate_number'=> $request->input('license_plate_number'),
-            'milo_meter'=> $request->input('milo_meter'),
+            'kilo_meter'=> $request->input('kilo_meter'),
             'passenger_capacity'=> $request->input('passenger_capacity'),
             'car_status'=> $request->input('car_status'),
             'service_type'=> $request->input('service_type'),

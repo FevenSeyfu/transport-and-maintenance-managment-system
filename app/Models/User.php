@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Model;
 class User extends Authenticatable
 {
     use HasFactory, Notifiable;
-
+    
     /**
      * The attributes that are mass assignable.
      *
@@ -31,6 +31,10 @@ class User extends Authenticatable
     public function Transports()
     {
         return $this->hasMany(Transport::class);
+    }
+    public function Maintenances()
+    {
+        return $this->hasMany(Maintenance::class);
     }
     
     /**

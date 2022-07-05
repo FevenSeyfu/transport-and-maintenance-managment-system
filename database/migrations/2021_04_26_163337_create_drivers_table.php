@@ -15,10 +15,18 @@ class CreateDriversTable extends Migration
     {
         Schema::create('drivers', function (Blueprint $table) {
             $table->increments('id');
+            $table->unsignedInteger('user_id')->nullable();
             $table->string('first_name');
             $table->string('last_name');
+            $table->string('username')->nullable();
             $table->string('driver_status')->default('available');
+            $table->unsignedInteger('initial_reading')->nullable();
+            $table->unsignedInteger('final_reading')->nullable();
+            $table->unsignedInteger('transport_id')->nullable();
             $table->timestamps();
+            $table->foreign('user_id')
+            ->references('id')
+            ->on('users');
         });
     }
 

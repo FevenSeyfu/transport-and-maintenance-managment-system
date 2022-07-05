@@ -14,20 +14,25 @@ class CreateTransportsTable extends Migration
     public function up()
     {
         Schema::create('transports', function (Blueprint $table) {
-            $table->increments('id',true);
+            $table->increments('id');
             $table->unsignedInteger('user_id')->nullable();
             $table->string('requested_by')->nullable();
             $table->string('Approved_by')->nullable();
             $table->string('travelers_name');
             $table->string('destination');
             $table->string('reason');
-            $table->string('starting_time');
-            $table->string('ending_time');
+            $table->time('starting_time')->nullable();
+            $table->time('ending_time')->nullable();
             $table->string('driver_name')->nullable();
             $table->string('car_license_num')->nullable();
+            $table->integer('initial_kilo_meter')->nullable();
+            $table->integer('final_kilo_meter')->nullable();
+            $table->integer('Traveled_kilo_meter')->nullable();
             $table->unsignedInteger('driver_id')->nullable();
             $table->unsignedInteger('car_id')->nullable();
             $table->string('request_status')->default('pending');
+            $table->string('driver_status')->nullable();
+            $table->string('client_status')->nullable();
             $table->timestamps();
             $table->foreign('user_id')
                     ->references('id')

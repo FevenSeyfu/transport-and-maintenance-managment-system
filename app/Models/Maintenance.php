@@ -8,4 +8,45 @@ use Illuminate\Database\Eloquent\Model;
 class Maintenance extends Model
 {
     use HasFactory;
+    protected $table ='maintenances';
+    protected $primarykey ='id';
+    protected $fillable =[
+        'assigned_mechanic',
+        'driver_name',
+        'shift_leader',
+        'vehicle_type',
+        'license_number',
+        'kiloMeter_reading',
+        'issues',
+        'starting_date',
+        'finished_date',
+        'fixed_issues',
+        'material_expense',
+        'Labor_expense',
+        'Total_expense',
+        'mechanics_comment',
+        'maintenance_status',
+        'maintenance_type',
+        'Total_time'
+    ];
+    public function User()
+    {
+        return $this->belongsTo(User::class);
+    }
+    public function  Car()
+    {
+        return $this->hasOne(Cars::class);
+    }
+    public function  driver()
+    {
+        return $this->hasOne(driver::class);
+    }
+    public function  feedback()
+    {
+        return $this->hasOne(Feedback::class);
+    }
+    protected $casts=[
+        'issues' =>'array',
+        'fixed_issues' =>'array'
+    ];
 }

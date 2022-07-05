@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="pt-10 bg-gray-500 ">
+<div class="row justify-content-end" id="top">
     <button  class="btn btn-outline-primary btn-sm" onclick="location.href='{{url('Leader')}}'">Dashboard</button>
 </div>
     <div class="container">
@@ -10,8 +10,8 @@
               Feedbacks Received from users
             </h2>
         </div>
-    <div>
-        <table class="table"  border="2">
+        <div class="d-flex justify-content-center">
+            <table class="table"  border="2">
                 <tr>
                     <th>Feedback from</th>
                     <th>Rate</th>
@@ -29,7 +29,10 @@
                 @endforeach
             </table>
             
-            <hr>
+            <a href="#top" class="row fixed-bottom  btn  btn-primary">
+                Back to top
+            </a>
+
         </div>
     </div>
 @endsection

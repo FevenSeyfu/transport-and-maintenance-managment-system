@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Transport;
+use App\Models\Maintenance;
+
 
 class RoleController extends Controller
 {
@@ -12,19 +15,42 @@ class RoleController extends Controller
         $this->middleware('auth');
     }
     public function client() {
-        $transports= Transport:: where('requested_by','=',\Auth::user()->username)->get();
+        $transports= Transport::where('requested_by','=',\Auth::user()->username)
+                                ->orderBY('created_at','DESC')
+                                ->get();
         return view('client.dashboard',[
             'transports'=>$transports
         ]);
     }  
     public function driver() {
-        return view('driver.dashboard');
+        $transports= Transport::where('driver_name','=',\Auth::user()->fullName())
+                                ->orderBY('created_at','DESC')
+                                ->get();
+       
+        return view('driver.dashboard',[
+            'transports'=>$transports
+        ]);
+        
       }
     public function Leader() {
-        return view('Leader.dashboard');
+        $transport=Transport::where('request_status','=','pending')->count();
+        $new = Maintenance::where('maintenance_status','=','pending')->count();
+        return view('Leader.dashboard',[
+            'transport'=> $transport,
+            'new'=> $new
+        ]);
     }
-    public function maintenHead() {
-        return view('maintenHead.dashboard');
+    public function maintenHead() 
+    {
+        
+        $maintenances =Maintenance::where('maintenance_status','=','Approved')
+                                        ->orWhere('maintenance_status','=','Mechanic_Completed')
+                                        ->orWhere('maintenance_status','=','completed')
+                                        ->orderBY('created_at','DESC')
+                                        ->get();
+        return view('maintenHead.dashboard',[
+            'maintenances'=> $maintenances,
+        ]);
       }
     public function admin() {
         $count= User::where('isApproved','=','0')->count();
@@ -38,7 +64,9 @@ class RoleController extends Controller
     }
     public function unapprovedList(){
         $users= User::where('isApproved','=','0')
-                            ->get();
+                    ->whereMonth('created_at',Carbon::now()->month)
+                    ->orderBY('created_at','DESC') 
+                    ->get();
                 return view('admin.users',compact('users'));
     }
     public function approve($user_id){

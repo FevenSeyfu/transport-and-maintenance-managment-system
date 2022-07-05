@@ -14,7 +14,12 @@ class Cars extends Model
      
     protected $fillable =['model',
                     'license_plate_number',
-                    'milo_meter',
+                    'Motor_number',
+                    'chassis_number',
+                    'Year',
+                    'age',
+                    'kilo_meter',
+                    'location',
                     'passenger_capacity',
                     'car_status',
                     'service_type',
@@ -22,5 +27,9 @@ class Cars extends Model
     public function TransportRequest()
     {
         return $this->belongsTo(Transport::class);
+    }
+    public function MaintenanceRequest()
+    {
+        return $this->belongsTo(Maintenance::class);
     }
 }

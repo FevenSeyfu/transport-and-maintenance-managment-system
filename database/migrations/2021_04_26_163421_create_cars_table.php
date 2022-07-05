@@ -17,10 +17,15 @@ class CreateCarsTable extends Migration
             $table->increments('id');
             $table->string('model')->nullable();
             $table->string('license_plate_number')->unique();
-            $table->string('service_type')->default('passenger');
-            $table->integer('passenger_capacity')->default('0');
-            $table->integer('milo_meter')->default('0');
+            $table->string('Year')->nullable();
+            $table->string('age')->nullable();
+            $table->string('Motor_number')->unique();
+            $table->string('chassis_number')->nullable();
+            $table->string('location')->default('A.A');
+            $table->string('service_type')->default('service');
+            $table->integer('passenger_capacity')->nullable();
             $table->string('car_status')->default('Available');
+            $table->integer('kilo_meter')->nullable();
             $table->longText('description')->nullable();
             $table->timestamps();
         });

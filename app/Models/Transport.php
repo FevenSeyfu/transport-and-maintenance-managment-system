@@ -18,8 +18,11 @@ class Transport extends Model
         'reason',
         'starting_time',
         'ending_time',
+        'initial_kilo_meter',
+        'final_kilo_meter'
 
     ];
+   
     public function User()
     {
         return $this->belongsTo(User::class);
@@ -31,6 +34,10 @@ class Transport extends Model
     public function  driver()
     {
         return $this->hasOne(driver::class);
+    }
+    public function  feedback()
+    {
+        return $this->hasOne(Feedback::class);
     }
    
 }
